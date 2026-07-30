@@ -1,0 +1,406 @@
+/**
+ * Reliable entrance animations for Contact (and similar) sections.
+ * Webflow IX2 SCROLL_INTO_VIEW is flaky in Nuxt SPA and our force-reveal
+ * was snapping mid-tween — use CSS slide/fade instead for above-fold + IO.
+ */
+
+@keyframes agro-slide-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 72px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes agro-zoom-out {
+  from {
+    opacity: 1;
+    transform: scale3d(1.18, 1.18, 1);
+  }
+  to {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.agro-enter {
+  opacity: 0;
+  transform: translate3d(0, 72px, 0);
+  will-change: opacity, transform;
+}
+
+/* Banner is above the fold — play on load */
+.rt-inner-banner .agro-enter {
+  animation: agro-slide-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.rt-inner-banner .agro-enter--d1 {
+  animation-delay: 0.05s;
+}
+.rt-inner-banner .agro-enter--d2 {
+  animation-delay: 0.14s;
+}
+.rt-inner-banner .agro-enter--d3 {
+  animation-delay: 0.24s;
+}
+
+.rt-inner-banner .agro-enter-zoom {
+  transform: scale3d(1.18, 1.18, 1);
+  animation: agro-zoom-out 1.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Below-fold: wait until IntersectionObserver adds --visible */
+.agro-enter-root .agro-enter {
+  opacity: 0;
+  transform: translate3d(0, 72px, 0);
+}
+
+.agro-enter-root--visible .agro-enter {
+  animation: agro-slide-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.agro-enter-root--visible .agro-enter--d1 {
+  animation-delay: 0.04s;
+}
+.agro-enter-root--visible .agro-enter--d2 {
+  animation-delay: 0.12s;
+}
+.agro-enter-root--visible .agro-enter--d3 {
+  animation-delay: 0.2s;
+}
+.agro-enter-root--visible .agro-enter--d4 {
+  animation-delay: 0.28s;
+}
+.agro-enter-root--visible .agro-enter--d5 {
+  animation-delay: 0.36s;
+}
+
+/* FAQ accordion rows stay interactive via IX2 click */
+.rt-faq-v1-wrap .rt-dropdown {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .agro-enter,
+  .agro-enter-zoom,
+  .agro-enter-root--visible .agro-enter {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* —— Product catalog (local agrofil_products, Webflow-styled) —— */
+
+.rt-product-hub {
+  padding-top: 4rem;
+  padding-bottom: 5rem;
+}
+
+.rt-product-hub-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.25rem;
+  width: 100%;
+  margin-top: 2.5rem;
+  isolation: isolate;
+}
+
+.rt-product-hub-card {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+  background-color: #fff;
+  border-radius: 1.25rem;
+  padding: 1.75rem 1.25rem;
+  box-shadow: none;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.rt-product-hub-card-inner {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  gap: 1.875rem;
+  text-align: center;
+}
+
+/* Hover only on the active card — keep shadow tight so it does not wash over the card below */
+.rt-product-hub-card:hover {
+  z-index: 2;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+}
+
+.rt-product-hub-preview {
+  font-size: 0.85rem;
+  line-height: 1.45;
+  opacity: 0.78;
+  margin-top: 0.35rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.rt-product-hub-desc {
+  margin-top: 0.65rem;
+  font-size: 0.92rem;
+}
+
+.rt-product-list {
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+}
+
+.rt-product-list-heading {
+  max-width: 40rem;
+  margin: 0 auto 2.5rem;
+}
+
+.rt-product-list-heading .rt-gap-off {
+  margin-top: 0.75rem;
+}
+
+.rt-product-card-grid {
+  padding-bottom: 4rem;
+}
+
+.rt-product-card {
+  background: #fff;
+  border-radius: 1.25rem;
+  padding: 0.75rem;
+  height: 100%;
+  box-shadow: 0 11px 40px #00000000;
+  transition: box-shadow 0.5s ease, transform 0.5s ease;
+}
+
+.rt-product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 70px #00000026;
+}
+
+.rt-product-card-media {
+  display: block;
+  width: 100%;
+  background: #f4f6f2;
+  border-radius: 1rem;
+  aspect-ratio: 1 / 1;
+}
+
+.rt-product-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.rt-product-card-excerpt {
+  font-size: 0.92rem;
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.rt-dlog-details-hero-content-inner {
+  background-image: linear-gradient(#fff0 32%, #2036247d 62%, #17271a 91%);
+}
+
+.rt-product-detail-hero-img {
+  width: 100%;
+  display: block;
+  min-height: 28rem;
+  max-height: 36rem;
+  object-fit: contain;
+  background: #f4f6f2;
+}
+
+.rt-product-detail-side {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.rt-product-detail-side-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.rt-product-detail-side-main {
+  background: #f4f6f2;
+  border-radius: 0.75rem;
+}
+
+.rt-product-detail-side-main img {
+  width: 100%;
+  max-height: 280px;
+  object-fit: contain;
+  display: block;
+}
+
+.rt-product-detail-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.rt-product-detail-nav-btn {
+  border: 0;
+  background: #1f3d2a;
+  color: #fff;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.rt-product-detail-thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.rt-product-detail-thumb {
+  border: 1px solid transparent;
+  padding: 0;
+  background: #fff;
+  width: 64px;
+  height: 64px;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.rt-product-detail-thumb.is-active {
+  border-color: #7cbc3c;
+}
+
+.rt-product-detail-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@media (max-width: 991px) {
+  .rt-product-hub-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rt-product-card-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .rt-product-hub-grid,
+  .rt-product-card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* —— Trusted partners: IX2 hover often skips v-for cards — CSS fallback —— */
+.rt-partners-card .rt-partners-over,
+.rt-partners-card-v2 .rt-partners-over-v2 {
+  opacity: 0;
+  transform: scale(1);
+  transition:
+    opacity 0.4s ease-in-out,
+    transform 0.4s ease-in-out;
+  pointer-events: none;
+}
+
+.rt-partners-card:hover .rt-partners-over,
+.rt-partners-card-v2:hover .rt-partners-over-v2 {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
+.rt-partners-card .rt-partners-logo.rt-1,
+.rt-partners-card-v2 .rt-partners-logo.rt-1,
+.rt-partners-card .rt-partners-logo.rt-2,
+.rt-partners-card-v2 .rt-partners-logo.rt-2 {
+  transition: transform 0.4s ease-in-out;
+}
+
+.rt-partners-card .rt-partners-logo.rt-1,
+.rt-partners-card-v2 .rt-partners-logo.rt-1 {
+  transform: translateY(0);
+}
+
+.rt-partners-card .rt-partners-logo.rt-2,
+.rt-partners-card-v2 .rt-partners-logo.rt-2 {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: translateY(100%);
+}
+
+.rt-partners-card:hover .rt-partners-logo.rt-1,
+.rt-partners-card-v2:hover .rt-partners-logo.rt-1 {
+  transform: translateY(-104%);
+}
+
+.rt-partners-card:hover .rt-partners-logo.rt-2,
+.rt-partners-card-v2:hover .rt-partners-logo.rt-2 {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rt-partners-card .rt-partners-over,
+  .rt-partners-card-v2 .rt-partners-over-v2,
+  .rt-partners-card .rt-partners-logo.rt-1,
+  .rt-partners-card-v2 .rt-partners-logo.rt-1,
+  .rt-partners-card .rt-partners-logo.rt-2,
+  .rt-partners-card-v2 .rt-partners-logo.rt-2 {
+    transition: none;
+  }
+}
+
+/* Focus headline: keep whole words on one line; scale type to fit */
+.rt-focus-wrapper {
+  overflow: hidden;
+  max-width: min(60.1875rem, 100%);
+}
+
+.rt-focus-text-content {
+  width: 100%;
+  max-width: 100%;
+}
+
+.rt-focus-text {
+  max-width: 100%;
+  white-space: nowrap;
+  font-size: clamp(2.5rem, 8.5vw, 12rem);
+}
+
+@media (max-width: 991px) {
+  .rt-focus-text {
+    font-size: clamp(2rem, 9vw, 4rem);
+  }
+}
+
+/* Nav links: keep label on one line (Webflow used flex and wrapped short RU labels) */
+.rt-desktop-menu .rt-navbar-toggle {
+  display: block;
+}
+

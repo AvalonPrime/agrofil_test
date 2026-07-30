@@ -1,0 +1,83 @@
+/**
+ * Arabic / RTL adaptations for a Webflow layout that was designed LTR.
+ * Keep structural flex/absolute shells in LTR; only text runs RTL.
+ * Full direction:rtl on .rt-header-v1-main / hero flex rows caused
+ * horizontal overflow (white gap) and reversed digit counters (+004).
+ */
+
+html.is-rtl {
+  direction: rtl;
+}
+
+html.is-rtl body,
+html.is-rtl .harvestam-site {
+  overflow-x: clip;
+}
+
+/* Structural Webflow shells stay LTR */
+html.is-rtl .rt-header-v1-main,
+html.is-rtl .rt-header-locale-actions,
+html.is-rtl .rt-desktop-menu,
+html.is-rtl .rt-nav-wrap,
+html.is-rtl .rt-hero-v1-content,
+html.is-rtl .rt-hero-v1-left,
+html.is-rtl .rt-hero-v1-right,
+html.is-rtl .rt-hero-v1-right-item,
+html.is-rtl .rt-hero-v1-left-buttom,
+html.is-rtl .rt-infrastructure-left-image,
+html.is-rtl .w-layout-hflex,
+html.is-rtl .w-layout-grid,
+html.is-rtl .rt-container-main,
+html.is-rtl .rt-footer-top,
+html.is-rtl .rt-nav-top-in,
+html.is-rtl .rt-nav-top-in-wrapper {
+  direction: ltr;
+}
+
+/* Counters / + must stay LTR or digits reverse (9+ → +9 / +004) */
+html.is-rtl .rt-counter-box,
+html.is-rtl .rt-counter,
+html.is-rtl .rt-counter-train,
+html.is-rtl .rt-counter-box-plus {
+  direction: ltr;
+  unicode-bidi: isolate;
+}
+
+/* Readable Arabic for copy, nav labels, buttons */
+html.is-rtl .rt-nav-text,
+html.is-rtl .rt-nav-text-v2,
+html.is-rtl .rt-nav-text-v3,
+html.is-rtl .rt-button-text,
+html.is-rtl .rt-sub-text,
+html.is-rtl .rt-top-text,
+html.is-rtl .rt-text-style-h4,
+html.is-rtl .rt-text-style-h5,
+html.is-rtl .rt-text-style-h6,
+html.is-rtl .rt-gap-off,
+html.is-rtl .rt-locale-switch__label,
+html.is-rtl .rt-locale-switch__option,
+html.is-rtl h1,
+html.is-rtl h2,
+html.is-rtl h3,
+html.is-rtl h4,
+html.is-rtl p {
+  direction: rtl;
+  unicode-bidi: isolate;
+  text-align: start;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+/* Hero title sits in a fixed max-width column — allow soft wraps */
+html.is-rtl .rt-hero-v1-left h1,
+html.is-rtl .rt-hero-v1-right-text {
+  text-align: right;
+}
+
+/* Banner already clips; reinforce so IX2 slides can't widen the page */
+html.is-rtl .rt-banner-main,
+html.is-rtl .rt-all-top,
+html.is-rtl .rt-navbar {
+  overflow-x: clip;
+  max-width: 100%;
+}
