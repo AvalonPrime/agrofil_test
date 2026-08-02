@@ -202,7 +202,7 @@ useWebflow(["/assets/js/jquery-3.5.1.min.dc5e7f18c8.js", "/assets/js/webflow.sch
          </div>
         </div>
         <div class="rt-farmers-v1-wrapper">
-         <a class="rt-farmers-v1-item rt-overflow-hidden rt-border-main w-inline-block" data-w-id="a444a672-ec39-3d2c-7a1e-79f92fd0035c" href="/blog-one">
+         <div class="rt-farmers-v1-item rt-overflow-hidden rt-border-main w-inline-block">
           <img alt="Farmers-image-meet-1" class="rt-scale-image" loading="lazy" sizes="100vw" src="/assets/69d8d5ca9016eaefef00af65_Farmers-image-meet-1.webp" srcset="/assets/69d8d5ca9016eaefef00af65_Farmers-image-meet-1-p-500.webp 500w, /assets/69d8d5ca9016eaefef00af65_Farmers-image-meet-1-p-800.webp 800w, /assets/69d8d5ca9016eaefef00af65_Farmers-image-meet-1.webp 908w"/>
           <div class="rt-farmers-v1-item-overlay">
            <div class="rt-farmers-v1-item-overlay-inner">
@@ -214,8 +214,8 @@ useWebflow(["/assets/js/jquery-3.5.1.min.dc5e7f18c8.js", "/assets/js/webflow.sch
             </div>
            </div>
           </div>
-         </a>
-         <a class="rt-farmers-v1-item rt-2 rt-overflow-hidden rt-border-main w-inline-block" data-w-id="a444a672-ec39-3d2c-7a1e-79f92fd00364" href="/blog-one">
+         </div>
+         <div class="rt-farmers-v1-item rt-2 rt-overflow-hidden rt-border-main w-inline-block">
           <img alt="Farmers-image-meet-3" class="rt-scale-image" loading="lazy" sizes="100vw" src="/assets/69d8d5cbde20939cf2fa156a_Farmers-image-meet-3.webp" srcset="/assets/69d8d5cbde20939cf2fa156a_Farmers-image-meet-3-p-500.webp 500w, /assets/69d8d5cbde20939cf2fa156a_Farmers-image-meet-3-p-800.webp 800w, /assets/69d8d5cbde20939cf2fa156a_Farmers-image-meet-3.webp 906w"/>
           <div class="rt-farmers-v1-item-overlay">
            <div class="rt-farmers-v1-item-overlay-inner">
@@ -227,8 +227,8 @@ useWebflow(["/assets/js/jquery-3.5.1.min.dc5e7f18c8.js", "/assets/js/webflow.sch
             </div>
            </div>
           </div>
-         </a>
-         <a class="rt-farmers-v1-item rt-3 rt-overflow-hidden rt-border-main w-inline-block" data-w-id="a444a672-ec39-3d2c-7a1e-79f92fd0036c" href="/blog-one">
+         </div>
+         <div class="rt-farmers-v1-item rt-3 rt-overflow-hidden rt-border-main w-inline-block">
           <img alt="Farmers-image-meet-2" class="rt-scale-image" loading="lazy" sizes="100vw" src="/assets/69d8d5cbb2864cfe815f2214_Farmers-image-meet-2.webp" srcset="/assets/69d8d5cbb2864cfe815f2214_Farmers-image-meet-2-p-500.webp 500w, /assets/69d8d5cbb2864cfe815f2214_Farmers-image-meet-2-p-800.webp 800w, /assets/69d8d5cbb2864cfe815f2214_Farmers-image-meet-2.webp 904w"/>
           <div class="rt-farmers-v1-item-overlay">
            <div class="rt-farmers-v1-item-overlay-inner">
@@ -240,7 +240,7 @@ useWebflow(["/assets/js/jquery-3.5.1.min.dc5e7f18c8.js", "/assets/js/webflow.sch
             </div>
            </div>
           </div>
-         </a>
+         </div>
         </div>
        </div>
       </div>

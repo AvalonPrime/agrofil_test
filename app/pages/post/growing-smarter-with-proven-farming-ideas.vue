@@ -229,7 +229,7 @@ useWebflow(["/assets/js/jquery-3.5.1.min.dc5e7f18c8.js", "/assets/js/webflow.sch
          </div>
          <div class="rt-blog-button">
           <div data-w-id="e048ae86-2b62-0a55-7f1e-265a80ba7d8f" style="opacity:0">
-           <a class="rt-button-box w-inline-block" data-w-id="c0cd2ce2-c868-017a-12e7-b8dedcd4c4dd" data-wf--rt-button-green--variant="base" href="/blog-one">
+           <a class="rt-button-box w-inline-block" data-w-id="c0cd2ce2-c868-017a-12e7-b8dedcd4c4dd" data-wf--rt-button-green--variant="base" href="/">
             <div class="rt-button-text-wrapper">
              <div class="rt-button-text rt-one">
               More articles

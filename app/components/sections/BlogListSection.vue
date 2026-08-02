@@ -48,7 +48,7 @@ if (!posts.value.length) {
           <NuxtLink
             aria-label="Next Page"
             class="w-pagination-next rt-previous"
-            to="/blog-one"
+            to="/"
           >
             <div class="rt-image-center">
               <AppImage
@@ -59,7 +59,7 @@ if (!posts.value.length) {
             </div>
           </NuxtLink>
           <link
-            href="/blog-one"
+            href="/"
             rel="prerender"
           >
         </div>

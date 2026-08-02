@@ -59,6 +59,7 @@ export default defineNuxtConfig({
     ],
     routeRules: {
       '/contact-one': { redirect: { to: '/contact', statusCode: 301 } },
+      '/blog-one': { redirect: { to: '/', statusCode: 301 } },
       '/assets/**': {
         headers: {
           'cache-control': 'public, max-age=31536000, immutable',
