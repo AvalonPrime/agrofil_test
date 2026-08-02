@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { LOGO_MAIN_SRC } from '~/constants/assets'
-
 const { localePath } = useAppI18n()
+const logoSrc = useSiteLogo()
 </script>
 
 <template>
@@ -12,11 +11,11 @@ const { localePath } = useAppI18n()
     >
       <div class="rt-nav-logo rt-one">
         <AppImage
-          :src="LOGO_MAIN_SRC"
-          alt=""
-          height="28"
-          width="142"
-          loading="lazy"
+          :src="logoSrc"
+          alt="Agrofil"
+          height="36"
+          width="140"
+          loading="eager"
         />
       </div>
     </NuxtLink>

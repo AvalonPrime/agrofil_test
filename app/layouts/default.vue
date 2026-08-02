@@ -1,7 +1,8 @@
 <script setup lang="ts">
 const { locale } = useAppI18n()
-const { globalCopy } = await useAsyncGlobalContent(locale)
+const { globalCopy, logoUrl } = await useAsyncGlobalContent(locale)
 provideCmsCopy(globalCopy)
+provideSiteLogo(logoUrl)
 </script>
 
 <template>

@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { LOGO_MAIN_SRC } from '~/constants/assets'
-
 const { t, localePath } = useCmsCopy()
+const logoSrc = useSiteLogo()
 
 const phoneDisplay = computed(() => t('footer.phone') || t('contact.phone') || '+90 552 634 44 43')
 const phoneHref = computed(() => {
@@ -55,8 +54,8 @@ const socialLinks = [
                 :to="localePath('/')"
               >
                 <AppImage
-                  :src="LOGO_MAIN_SRC"
-                  alt=""
+                  :src="logoSrc"
+                  alt="Agrofil"
                   loading="lazy"
                 />
               </NuxtLink>

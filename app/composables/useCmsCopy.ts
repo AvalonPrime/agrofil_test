@@ -1,13 +1,25 @@
 import type { AppLocale } from '~/composables/useAppI18n'
+import { LOGO_MAIN_SRC } from '~/constants/assets'
+import { resolveMediaUrl } from '~/utils/mediaUrl'
 
 export type CmsCopyMap = Record<string, string>
 
 const CMS_COPY_KEY = 'agrofilCmsCopy'
+const CMS_LOGO_KEY = 'agrofilLogoUrl'
 
 function setIf(copy: CmsCopyMap, key: string, value: string | null | undefined) {
   if (typeof value === 'string' && value.length > 0) {
     copy[key] = value
   }
+}
+
+function mediaUrl(
+  file: { url?: string } | null | undefined,
+  strapiUrl: string,
+  assetsCdn: string,
+) {
+  if (!file?.url) return ''
+  return resolveMediaUrl(file.url, strapiUrl, assetsCdn)
 }
 
 export function provideCmsCopy(copy: Ref<CmsCopyMap>) {
@@ -17,6 +29,15 @@ export function provideCmsCopy(copy: Ref<CmsCopyMap>) {
     ...copy.value,
   }))
   provide(CMS_COPY_KEY, merged)
+}
+
+export function provideSiteLogo(logoUrl: Ref<string>) {
+  provide(CMS_LOGO_KEY, logoUrl)
+}
+
+/** Site logo from Global CMS (fallback to local brand asset). */
+export function useSiteLogo() {
+  return inject<Ref<string>>(CMS_LOGO_KEY, ref(LOGO_MAIN_SRC))
 }
 
 /** i18n with CMS overlay (Global / About / Contact / …). */
@@ -69,6 +90,7 @@ export async function useAsyncGlobalContent(locale: Ref<AppLocale> | AppLocale) 
             'populate[nav]': true,
             'populate[footer]': true,
             'populate[cta]': true,
+            'populate[logo]': true,
           },
         })
       } catch (err) {
@@ -81,5 +103,12 @@ export async function useAsyncGlobalContent(locale: Ref<AppLocale> | AppLocale) 
 
   const globalCopy = computed(() => mapStrapiGlobalToCopy((data.value as any)?.data))
 
-  return { globalCopy, error, refresh, status, raw: data }
+  const logoUrl = computed(() => {
+    const base = String(config.public.strapiUrl || '').replace(/\/$/, '')
+    const assetsCdn = String(config.public.assetsCdn || '')
+    const fromCms = mediaUrl((data.value as any)?.data?.logo, base, assetsCdn)
+    return fromCms || LOGO_MAIN_SRC
+  })
+
+  return { globalCopy, logoUrl, error, refresh, status, raw: data }
 }
