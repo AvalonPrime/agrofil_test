@@ -13,8 +13,8 @@ const logoSrc = useSiteLogo()
         <AppImage
           :src="logoSrc"
           alt="Agrofil"
-          height="36"
-          width="140"
+          height="71"
+          width="272"
           loading="eager"
         />
       </div>

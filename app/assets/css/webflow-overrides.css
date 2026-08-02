@@ -405,24 +405,37 @@
 }
 
 /* Agrofil logo (replaces Harvestam wordmark) */
+.rt-nav-logo.rt-one {
+  width: auto;
+  height: auto;
+}
+
 .rt-nav-logo.rt-one img {
   width: auto;
-  height: 36px;
-  max-width: 168px;
+  height: 71px;
+  max-width: 17rem;
   object-fit: contain;
+  display: block;
 }
 
 .rt-footer-logo-icon img {
   width: 100%;
   height: auto;
-  max-width: 14.18rem;
+  max-width: 16rem;
   object-fit: contain;
+}
+
+@media (max-width: 991px) {
+  .rt-nav-logo.rt-one img {
+    height: 56px;
+    max-width: 14rem;
+  }
 }
 
 @media (max-width: 767px) {
   .rt-nav-logo.rt-one img {
-    height: 28px;
-    max-width: 132px;
+    height: 44px;
+    max-width: 12rem;
   }
 }
 
