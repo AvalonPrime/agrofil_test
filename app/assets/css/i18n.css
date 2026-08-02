@@ -74,10 +74,18 @@ html.is-rtl .rt-hero-v1-right-text {
   text-align: right;
 }
 
-/* Banner already clips; reinforce so IX2 slides can't widen the page */
+/* Banner already clips; reinforce so IX2 slides can't widen the page.
+   Do NOT clip .rt-navbar — it breaks the locale dropdown hit-testing in RTL
+   (overflow-x: clip forces overflow-y clipping too). */
 html.is-rtl .rt-banner-main,
-html.is-rtl .rt-all-top,
-html.is-rtl .rt-navbar {
+html.is-rtl .rt-all-top {
   overflow-x: clip;
   max-width: 100%;
+}
+
+html.is-rtl .rt-navbar,
+html.is-rtl .rt-navbar-all,
+html.is-rtl .rt-header-v1-main,
+html.is-rtl .rt-header-locale-actions {
+  overflow: visible;
 }

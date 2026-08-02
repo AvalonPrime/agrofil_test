@@ -80,7 +80,7 @@ onBeforeUnmount(() => {
   display: inline-flex;
   align-items: center;
   margin-inline-end: 12px;
-  z-index: 30;
+  z-index: 1000;
 }
 
 .rt-locale-switch__btn {
@@ -113,15 +113,30 @@ onBeforeUnmount(() => {
 
 .rt-locale-switch__menu {
   position: absolute;
-  top: calc(100% + 8px);
-  inset-inline-end: 0;
+  top: 100%;
+  /* Physical sides — avoid RTL logical inset mismatch with LTR header shell */
+  right: 0;
+  left: auto;
   min-width: 180px;
   margin: 0;
-  padding: 8px 0;
+  /* Invisible bridge so cursor can move from button → menu without gaps */
+  padding: 10px 0 8px;
   list-style: none;
   background: #fff;
+  background-clip: padding-box;
   border-radius: 12px;
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+  z-index: 1001;
+  direction: ltr;
+}
+
+.rt-locale-switch__menu::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -12px;
+  height: 12px;
 }
 
 .rt-locale-switch__option {
@@ -141,7 +156,15 @@ onBeforeUnmount(() => {
   background: #eef6e8;
 }
 
-:global(.is-rtl) .rt-locale-switch__label {
+:global(.is-rtl) .rt-locale-switch {
+  direction: ltr;
+}
+
+:global(.is-rtl) .rt-locale-switch__label,
+:global(.is-rtl) .rt-locale-switch__option {
+  direction: rtl;
+  unicode-bidi: isolate;
+  text-align: right;
   font-family: inherit;
 }
 </style>
